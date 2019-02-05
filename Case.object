@@ -1,0 +1,6541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+	<businessProcesses>
+		<fullName>Pricing OFFLINE Support Process</fullName>
+		<description>Support Process specific for Pricing case types</description>
+		<isActive>true</isActive>
+		<values>
+			<fullName>Closed</fullName>
+			<default>false</default>
+		</values>
+		<values>
+			<fullName>Declined</fullName>
+			<default>false</default>
+		</values>
+		<values>
+			<fullName>In Progress</fullName>
+			<default>false</default>
+		</values>
+		<values>
+			<fullName>Not Started</fullName>
+			<default>true</default>
+		</values>
+		<values>
+			<fullName>Pending Credit</fullName>
+			<default>false</default>
+		</values>
+		<values>
+			<fullName>Pending EOL</fullName>
+			<default>false</default>
+		</values>
+		<values>
+			<fullName>Pending Sales</fullName>
+			<default>false</default>
+		</values>
+		<values>
+			<fullName>Pending Subsidy</fullName>
+			<default>false</default>
+		</values>
+		<values>
+			<fullName>Priced</fullName>
+			<default>false</default>
+		</values>
+		<values>
+			<fullName>Pricing Approved</fullName>
+			<default>false</default>
+		</values>
+	</businessProcesses>
+	<fields>
+		<fullName>Is_No_Account_Case__c</fullName>
+		<description>Validate if case is No Account Case/Call/Correspondence</description>
+		<externalId>false</externalId>
+		<formula>IF(AND( ISBLANK(Revolving_Account_Number__c) ,
+			ISBLANK(CCAN__c), ISBLANK(Contract_Number__c) ),true, false)</formula>
+		<label>Is_No_Account_Case</label>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Checkbox</type>
+	</fields>
+
+	<fields>
+		<fullName>Officer_Badge_Number__c</fullName>
+		<description>Officer Badge Number</description>
+		<externalId>false</externalId>
+		<label>Officer Badge Number</label>
+		<length>30</length>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
+	<fields>
+		<fullName>Police_Report_Filled__c</fullName>
+		<description>Has the police report been filled? Yes or No?</description>
+		<externalId>false</externalId>
+		<label>Police Report Filled</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+		<valueSet>
+			<restricted>true</restricted>
+			<valueSetDefinition>
+				<sorted>false</sorted>
+				<value>
+					<fullName>Yes</fullName>
+					<default>false</default>
+					<label>Yes</label>
+				</value>
+				<value>
+					<fullName>No</fullName>
+					<default>false</default>
+					<label>No</label>
+				</value>
+			</valueSetDefinition>
+		</valueSet>
+	</fields>
+
+	<fields>
+		<fullName>Is_Customer_Portal_User__c</fullName>
+		<defaultValue>false</defaultValue>
+		<description>Checks if the case contact is a Customer Portal user</description>
+		<externalId>false</externalId>
+		<inlineHelpText>Checks if the case contact is a Customer Portal user</inlineHelpText>
+		<label>Is Customer Portal User</label>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Checkbox</type>
+	</fields>
+
+	<fields>
+		<fullName>BO_Exception__c</fullName>
+		<description>Beneficial Owner Verification Exceptions</description>
+		<externalId>false</externalId>
+		<inlineHelpText>Beneficial Owner Verification Exceptions</inlineHelpText>
+		<label>BO Exception</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+		<valueSet>
+			<restricted>true</restricted>
+			<valueSetDefinition>
+				<sorted>true</sorted>
+				<value>
+					<fullName>Exemption Filed</fullName>
+					<default>false</default>
+					<label>Exemption Filed</label>
+				</value>
+				<value>
+					<fullName>Opt-out</fullName>
+					<default>false</default>
+					<label>Opt-out</label>
+				</value>
+			</valueSetDefinition>
+		</valueSet>
+	</fields>
+
+	<fields>
+		<fullName>Account_Owner_Manager__c</fullName>
+		<externalId>false</externalId>
+		<formula>Account.Owner.Manager.FirstName &amp; &apos; &apos; &amp;  Account.Owner.Manager.LastName</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Account Owner Manager</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
+	<fields>
+		<fullName>Credit_DFS_Financing_Name__c</fullName>
+		<description>Added for No account Credit cases.</description>
+		<externalId>false</externalId>
+		<formula>Account.CCAN_Name__c</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>DFS Financing Name</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
+	<fields>
+		<fullName>Estimated_DFS_Annual_Spend__c</fullName>
+		<externalId>false</externalId>
+		<formula>Account.DFS_Annual_Spend__c</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Estimated DFS Annual Spend</label>
+		<precision>18</precision>
+		<required>false</required>
+		<scale>2</scale>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Currency</type>
+	</fields>
+	<fields>
+		<fullName>Goal_ID__c</fullName>
+		<externalId>false</externalId>
+		<label>Goal ID</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>TextArea</type>
+	</fields>
+	<fields>
+		<fullName>Indexing__c</fullName>
+		<externalId>false</externalId>
+		<label>Indexing</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+		<valueSet>
+			<restricted>true</restricted>
+			<valueSetDefinition>
+				<sorted>false</sorted>
+				<value>
+					<fullName>Not Discussed</fullName>
+					<default>false</default>
+					<label>Not Discussed</label>
+				</value>
+				<value>
+					<fullName>Indexing Amendment</fullName>
+					<default>false</default>
+					<label>Indexing Amendment</label>
+				</value>
+				<value>
+					<fullName>Proposed Indexing Amendment</fullName>
+					<default>false</default>
+					<label>Proposed Indexing Amendment</label>
+				</value>
+				<value>
+					<fullName>Informal Indexing</fullName>
+					<default>false</default>
+					<label>Informal Indexing</label>
+				</value>
+			</valueSetDefinition>
+		</valueSet>
+	</fields>
+	<fields>
+		<fullName>Multi_Country__c</fullName>
+		<externalId>false</externalId>
+		<label>Multi-Country</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>MultiselectPicklist</type>
+		<valueSet>
+			<restricted>true</restricted>
+			<valueSetDefinition>
+				<sorted>false</sorted>
+				<value>
+					<fullName>US</fullName>
+					<default>false</default>
+					<label>US</label>
+				</value>
+				<value>
+					<fullName>Mexico</fullName>
+					<default>false</default>
+					<label>Mexico</label>
+				</value>
+				<value>
+					<fullName>Canada</fullName>
+					<default>false</default>
+					<label>Canada</label>
+				</value>
+				<value>
+					<fullName>EMEA</fullName>
+					<default>false</default>
+					<label>EMEA</label>
+				</value>
+				<value>
+					<fullName>ANZ</fullName>
+					<default>false</default>
+					<label>ANZ</label>
+				</value>
+			</valueSetDefinition>
+		</valueSet>
+		<visibleLines>4</visibleLines>
+	</fields>
+	<fields>
+		<fullName>Opportunity_Amount__c</fullName>
+		<externalId>false</externalId>
+		<formula>Opportunity__r.Amount</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Opportunity Amount</label>
+		<precision>18</precision>
+		<required>false</required>
+		<scale>2</scale>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Currency</type>
+	</fields>
+	<fields>
+		<fullName>Opportunity_Classification__c</fullName>
+		<externalId>false</externalId>
+		<formula>TEXT(Opportunity__r.Classification__c)</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Opportunity Classification</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
+	<fields>
+		<fullName>Opportunity_Owner_Manager__c</fullName>
+		<externalId>false</externalId>
+		<formula>Opportunity__r.Owner.Manager.FirstName &amp; &apos; &apos; &amp; Opportunity__r.Owner.Manager.LastName</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Opportunity Owner Manager</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
+	<fields>
+		<fullName>Opportunity__c</fullName>
+		<deleteConstraint>SetNull</deleteConstraint>
+		<externalId>false</externalId>
+		<label>Opportunity Name</label>
+		<referenceTo>Opportunity</referenceTo>
+		<relationshipLabel>Cases</relationshipLabel>
+		<relationshipName>Cases</relationshipName>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Lookup</type>
+	</fields>
+	<fields>
+		<fullName>Rate_Change__c</fullName>
+		<externalId>false</externalId>
+		<label>Rate Change</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+		<valueSet>
+			<valueSetDefinition>
+				<sorted>false</sorted>
+				<value>
+					<fullName>New Rate</fullName>
+					<default>false</default>
+					<label>New Rate</label>
+				</value>
+				<value>
+					<fullName>No Rate Change</fullName>
+					<default>false</default>
+					<label>No Rate Change</label>
+				</value>
+				<value>
+					<fullName>Rate Increase</fullName>
+					<default>false</default>
+					<label>Rate Increase</label>
+				</value>
+				<value>
+					<fullName>Rate Decrease</fullName>
+					<default>false</default>
+					<label>Rate Decrease</label>
+				</value>
+				<value>
+					<fullName>No Rate Provided</fullName>
+					<default>false</default>
+					<label>No Rate Provided</label>
+				</value>
+			</valueSetDefinition>
+		</valueSet>
+	</fields>
+	<fields>
+		<fullName>Scenario_Numbers__c</fullName>
+		<externalId>false</externalId>
+		<formula>Opportunity__r.Pricing_Scenario_Numbers__c</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Scenario Numbers</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
+
+	<fields>
+		<fullName>Branch_Code__c</fullName>
+		<externalId>false</externalId>
+		<label>Branch Code</label>
+		<length>10</length>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
+	<fields>
+		<fullName>Contract_Amount__c</fullName>
+		<externalId>false</externalId>
+		<label>Contract Amount</label>
+		<precision>18</precision>
+		<required>false</required>
+		<scale>2</scale>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Currency</type>
+	</fields>
+	<fields>
+		<fullName>Funding_Status__c</fullName>
+		<externalId>false</externalId>
+		<label>Funding Status</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+		<valueSet>
+			<restricted>true</restricted>
+			<valueSetDefinition>
+				<sorted>true</sorted>
+				<value>
+					<fullName>Funded</fullName>
+					<default>false</default>
+					<label>Funded</label>
+				</value>
+				<value>
+					<fullName>Not Funded</fullName>
+					<default>false</default>
+					<label>Not Funded</label>
+				</value>
+			</valueSetDefinition>
+		</valueSet>
+	</fields>
+	<fields>
+		<fullName>Inquiry_Type__c</fullName>
+		<externalId>false</externalId>
+		<label>Inquiry Type</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+		<valueSet>
+			<restricted>true</restricted>
+			<valueSetDefinition>
+				<sorted>false</sorted>
+				<value>
+					<fullName>Sales Inquiry</fullName>
+					<default>false</default>
+					<label>Sales Inquiry</label>
+				</value>
+				<value>
+					<fullName>Change in Commencement Date</fullName>
+					<default>false</default>
+					<label>Change in Commencement Date</label>
+				</value>
+				<value>
+					<fullName>Change in Term / Lease Type</fullName>
+					<default>false</default>
+					<label>Change in Term / Lease Type</label>
+				</value>
+				<value>
+					<fullName>Contract Modification (Financed Amount, Interim Rent, Taxes)</fullName>
+					<default>false</default>
+					<label>Contract Modification (Financed Amount, Interim Rent, Taxes)</label>
+				</value>
+				<value>
+					<fullName>IRR Approval</fullName>
+					<default>false</default>
+					<label>IRR Approval</label>
+				</value>
+				<value>
+					<fullName>Other</fullName>
+					<default>false</default>
+					<label>Other</label>
+				</value>
+				<value>
+					<fullName>Out of Consolidation</fullName>
+					<default>false</default>
+					<label>Out of Consolidation</label>
+				</value>
+				<value>
+					<fullName>Rate or Product Guidance</fullName>
+					<default>false</default>
+					<label>Rate or Product Guidance</label>
+				</value>
+				<value>
+					<fullName>Scenario Modification</fullName>
+					<default>false</default>
+					<label>Scenario Modification</label>
+				</value>
+				<value>
+					<fullName>Variable Payments or Payment Due Date</fullName>
+					<default>false</default>
+					<label>Variable Payments or Payment Due Date</label>
+				</value>
+				<value>
+					<fullName>Walk to Manifest</fullName>
+					<default>false</default>
+					<label>Walk to Manifest</label>
+				</value>
+			</valueSetDefinition>
+		</valueSet>
+	</fields>
+	<fields>
+		<fullName>Pricing_Request_Type__c</fullName>
+		<externalId>false</externalId>
+		<label>Pricing Request Type</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+		<valueSet>
+			<restricted>true</restricted>
+			<valueSetDefinition>
+				<sorted>true</sorted>
+				<value>
+					<fullName>Non-Sales Inquiry</fullName>
+					<default>false</default>
+					<label>Non-Sales Inquiry</label>
+				</value>
+				<value>
+					<fullName>Sales Inquiry</fullName>
+					<default>false</default>
+					<label>Sales Inquiry</label>
+				</value>
+			</valueSetDefinition>
+		</valueSet>
+	</fields>
+	<fields>
+		<fullName>SubType__c</fullName>
+		<externalId>false</externalId>
+		<label>Sub Type</label>
+		<required>false</required>
+		<trackHistory>true</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+		<valueSet>
+			<controllingField>Type</controllingField>
+			<valueSetDefinition>
+				<sorted>true</sorted>
+				<value>
+					<fullName>(na)</fullName>
+					<default>false</default>
+					<label>(na)</label>
+				</value>
+				<value>
+					<fullName>3rd Party Caller</fullName>
+					<default>false</default>
+					<label>3rd Party Caller</label>
+				</value>
+				<value>
+					<fullName>Account Booking Issue</fullName>
+					<default>false</default>
+					<label>Account Booking Issue</label>
+				</value>
+				<value>
+					<fullName>Account Name</fullName>
+					<default>false</default>
+					<label>Account Name</label>
+				</value>
+				<value>
+					<fullName>Accounts Payable-Internal Transfer</fullName>
+					<default>false</default>
+					<label>Accounts Payable-Internal Transfer</label>
+				</value>
+				<value>
+					<fullName>ACH Debit</fullName>
+					<default>false</default>
+					<label>ACH Debit</label>
+				</value>
+				<value>
+					<fullName>Address/Phone/Email</fullName>
+					<default>false</default>
+					<label>Address/Phone/Email</label>
+				</value>
+				<value>
+					<fullName>Address Change - Asset</fullName>
+					<default>false</default>
+					<label>Address Change - Asset</label>
+				</value>
+				<value>
+					<fullName>Address Change - Customer</fullName>
+					<default>false</default>
+					<label>Address Change - Customer</label>
+				</value>
+				<value>
+					<fullName>Asset Adjustment</fullName>
+					<default>false</default>
+					<label>Asset Adjustment</label>
+				</value>
+				<value>
+					<fullName>Asset Register Request</fullName>
+					<default>false</default>
+					<label>Asset Register Request</label>
+				</value>
+				<value>
+					<fullName>Asset Returns Termination</fullName>
+					<default>false</default>
+					<label>Asset Returns Termination</label>
+				</value>
+				<value>
+					<fullName>Assignment/Assumption</fullName>
+					<default>false</default>
+					<label>Assignment/Assumption</label>
+				</value>
+				<value>
+					<fullName>Assignment &amp; Assumption</fullName>
+					<default>false</default>
+					<label>Assignment &amp; Assumption</label>
+				</value>
+				<value>
+					<fullName>Autopay - Paper Form</fullName>
+					<default>false</default>
+					<label>Autopay - Paper Form</label>
+				</value>
+				<value>
+					<fullName>Autopay Setup</fullName>
+					<default>false</default>
+					<label>Autopay Setup</label>
+				</value>
+				<value>
+					<fullName>Balance Dispute</fullName>
+					<default>false</default>
+					<label>Balance Dispute</label>
+				</value>
+				<value>
+					<fullName>Banking Changes</fullName>
+					<default>false</default>
+					<label>Banking Changes</label>
+				</value>
+				<value>
+					<fullName>Basic Account Information</fullName>
+					<default>false</default>
+					<label>Basic Account Information</label>
+				</value>
+				<value>
+					<fullName>Basic DFS/Dell Information</fullName>
+					<default>false</default>
+					<label>Basic DFS/Dell Information</label>
+				</value>
+				<value>
+					<fullName>Basic Payment Question</fullName>
+					<default>false</default>
+					<label>Basic Payment Question</label>
+				</value>
+				<value>
+					<fullName>Basic Product Questions</fullName>
+					<default>false</default>
+					<label>Basic Product Questions</label>
+				</value>
+				<value>
+					<fullName>Batch Cancellation</fullName>
+					<default>false</default>
+					<label>Batch Cancellation</label>
+				</value>
+				<value>
+					<fullName>Billing Dispute</fullName>
+					<default>false</default>
+					<label>Billing Dispute</label>
+				</value>
+				<value>
+					<fullName>Billing Disputes</fullName>
+					<default>false</default>
+					<label>Billing Disputes</label>
+				</value>
+				<value>
+					<fullName>Billing Invoice Issue</fullName>
+					<default>false</default>
+					<label>Billing Invoice Issue</label>
+				</value>
+				<value>
+					<fullName>Booking</fullName>
+					<default>false</default>
+					<label>Booking</label>
+				</value>
+				<value>
+					<fullName>Booking Error</fullName>
+					<default>false</default>
+					<label>Booking Error</label>
+				</value>
+				<value>
+					<fullName>Callback Request</fullName>
+					<default>false</default>
+					<label>Callback Request</label>
+				</value>
+				<value>
+					<fullName>Cash App Request</fullName>
+					<default>false</default>
+					<label>Cash App Request</label>
+				</value>
+				<value>
+					<fullName>Cash Ops-Refund</fullName>
+					<default>false</default>
+					<label>Cash Ops-Refund</label>
+				</value>
+				<value>
+					<fullName>Cash Ops-Refund - Low-Priority</fullName>
+					<default>false</default>
+					<label>Cash Ops-Refund - Low-Priority</label>
+				</value>
+				<value>
+					<fullName>Cash Ops-Refund - Priority</fullName>
+					<default>false</default>
+					<label>Cash Ops-Refund - Priority</label>
+				</value>
+				<value>
+					<fullName>Cash Ops-Refund - Same Day</fullName>
+					<default>false</default>
+					<label>Cash Ops-Refund - Same Day</label>
+				</value>
+				<value>
+					<fullName>Cash UI Request</fullName>
+					<default>false</default>
+					<label>Cash UI Request</label>
+				</value>
+				<value>
+					<fullName>CCAN Merge</fullName>
+					<default>false</default>
+					<label>CCAN Merge</label>
+				</value>
+				<value>
+					<fullName>CCAN Merge only</fullName>
+					<default>false</default>
+					<label>CCAN Merge only</label>
+				</value>
+				<value>
+					<fullName>Charge Off Request</fullName>
+					<default>false</default>
+					<label>Charge Off Request</label>
+				</value>
+				<value>
+					<fullName>Check Payments</fullName>
+					<default>false</default>
+					<label>Check Payments</label>
+				</value>
+				<value>
+					<fullName>Client Services-Pay Plan Proposal</fullName>
+					<default>false</default>
+					<label>Client Services-Pay Plan Proposal</label>
+				</value>
+				<value>
+					<fullName>Close/Reopen Account</fullName>
+					<default>false</default>
+					<label>Close/Reopen Account</label>
+				</value>
+				<value>
+					<fullName>Close Account</fullName>
+					<default>false</default>
+					<label>Close Account</label>
+				</value>
+				<value>
+					<fullName>Closed Loop</fullName>
+					<default>false</default>
+					<label>Closed Loop</label>
+				</value>
+				<value>
+					<fullName>Collections</fullName>
+					<default>false</default>
+					<label>Collections</label>
+				</value>
+				<value>
+					<fullName>Company Search</fullName>
+					<default>false</default>
+					<label>Company Search</label>
+				</value>
+				<value>
+					<fullName>Contract Audit</fullName>
+					<default>false</default>
+					<label>Contract Audit</label>
+				</value>
+				<value>
+					<fullName>Contract Changes</fullName>
+					<default>false</default>
+					<label>Contract Changes</label>
+				</value>
+				<value>
+					<fullName>Contract Info</fullName>
+					<default>false</default>
+					<label>Contract Info</label>
+				</value>
+				<value>
+					<fullName>Contract Reversal</fullName>
+					<default>false</default>
+					<label>Contract Reversal</label>
+				</value>
+				<value>
+					<fullName>CPP Charges</fullName>
+					<default>false</default>
+					<label>CPP Charges</label>
+				</value>
+				<value>
+					<fullName>Credit</fullName>
+					<default>false</default>
+					<label>Credit</label>
+				</value>
+				<value>
+					<fullName>Credit/Credit Bureau</fullName>
+					<default>false</default>
+					<label>Credit/Credit Bureau</label>
+				</value>
+				<value>
+					<fullName>Credit/Debit Adjustment</fullName>
+					<default>false</default>
+					<label>Credit/Debit Adjustment</label>
+				</value>
+				<value>
+					<fullName>Credit (SO)</fullName>
+					<default>false</default>
+					<label>Credit (SO)</label>
+				</value>
+				<value>
+					<fullName>Credit Check</fullName>
+					<default>false</default>
+					<label>Credit Check</label>
+				</value>
+				<value>
+					<fullName>Credit Decline Letter</fullName>
+					<default>false</default>
+					<label>Credit Decline Letter</label>
+				</value>
+				<value>
+					<fullName>Credit History Amendment</fullName>
+					<default>false</default>
+					<label>Credit History Amendment</label>
+				</value>
+				<value>
+					<fullName>Credit Incomplete Letter</fullName>
+					<default>false</default>
+					<label>Credit Incomplete Letter</label>
+				</value>
+				<value>
+					<fullName>Credit Limit</fullName>
+					<default>false</default>
+					<label>Credit Limit</label>
+				</value>
+				<value>
+					<fullName>Credit Line for Customer</fullName>
+					<default>false</default>
+					<label>Credit Line for Customer</label>
+				</value>
+				<value>
+					<fullName>Credit Line for Customer - PLI</fullName>
+					<default>false</default>
+					<label>Credit Line for Customer - PLI</label>
+				</value>
+				<value>
+					<fullName>Credit Line for Partner</fullName>
+					<default>false</default>
+					<label>Credit Line for Partner</label>
+				</value>
+				<value>
+					<fullName>Credit Note Request</fullName>
+					<default>false</default>
+					<label>Credit Note Request</label>
+				</value>
+				<value>
+					<fullName>Credit Report Request</fullName>
+					<default>false</default>
+					<label>Credit Report Request</label>
+				</value>
+				<value>
+					<fullName>Credit Restructure</fullName>
+					<default>false</default>
+					<label>Credit Restructure</label>
+				</value>
+				<value>
+					<fullName>Custodian/Auth Users</fullName>
+					<default>false</default>
+					<label>Custodian/Auth Users</label>
+				</value>
+				<value>
+					<fullName>Customer/Contact Info</fullName>
+					<default>false</default>
+					<label>Customer/Contact Info</label>
+				</value>
+				<value>
+					<fullName>Customer Complaint</fullName>
+					<default>false</default>
+					<label>Customer Complaint</label>
+				</value>
+				<value>
+					<fullName>Customer Name Change</fullName>
+					<default>false</default>
+					<label>Customer Name Change</label>
+				</value>
+				<value>
+					<fullName>DBC</fullName>
+					<default>false</default>
+					<label>DBC</label>
+				</value>
+				<value>
+					<fullName>DCN to DCN</fullName>
+					<default>false</default>
+					<label>DCN to DCN</label>
+				</value>
+				<value>
+					<fullName>Debt Validation</fullName>
+					<default>false</default>
+					<label>Debt Validation</label>
+				</value>
+				<value>
+					<fullName>Dell Care</fullName>
+					<default>false</default>
+					<label>Dell Care</label>
+				</value>
+				<value>
+					<fullName>Dell Sales</fullName>
+					<default>false</default>
+					<label>Dell Sales</label>
+				</value>
+				<value>
+					<fullName>Dell Tech</fullName>
+					<default>false</default>
+					<label>Dell Tech</label>
+				</value>
+				<value>
+					<fullName>Designee</fullName>
+					<default>false</default>
+					<label>Designee</label>
+				</value>
+				<value>
+					<fullName>DFS APS</fullName>
+					<default>false</default>
+					<label>DFS APS</label>
+				</value>
+				<value>
+					<fullName>DFS APS Reports</fullName>
+					<default>false</default>
+					<label>DFS APS Reports</label>
+				</value>
+				<value>
+					<fullName>DFS Collections</fullName>
+					<default>false</default>
+					<label>DFS Collections</label>
+				</value>
+				<value>
+					<fullName>DFS Remediation</fullName>
+					<default>false</default>
+					<label>DFS Remediation</label>
+				</value>
+				<value>
+					<fullName>DFS to Terms</fullName>
+					<default>false</default>
+					<label>DFS to Terms</label>
+				</value>
+				<value>
+					<fullName>Direct Debit Queries</fullName>
+					<default>false</default>
+					<label>Direct Debit Queries</label>
+				</value>
+				<value>
+					<fullName>Direct Pay Invoice</fullName>
+					<default>false</default>
+					<label>Direct Pay Invoice</label>
+				</value>
+				<value>
+					<fullName>Doc Generation</fullName>
+					<default>false</default>
+					<label>Doc Generation</label>
+				</value>
+				<value>
+					<fullName>Document Requests</fullName>
+					<default>false</default>
+					<label>Document Requests</label>
+				</value>
+				<value>
+					<fullName>DPA</fullName>
+					<default>false</default>
+					<label>DPA</label>
+				</value>
+				<value>
+					<fullName>Dropped Call</fullName>
+					<default>false</default>
+					<label>Dropped Call</label>
+				</value>
+				<value>
+					<fullName>Duplicate Account</fullName>
+					<default>false</default>
+					<label>Duplicate Account</label>
+				</value>
+				<value>
+					<fullName>Early Term Quote</fullName>
+					<default>false</default>
+					<label>Early Term Quote</label>
+				</value>
+				<value>
+					<fullName>End of Lease</fullName>
+					<default>false</default>
+					<label>End of Lease</label>
+				</value>
+				<value>
+					<fullName>End of Term Quote</fullName>
+					<default>false</default>
+					<label>End of Term Quote</label>
+				</value>
+				<value>
+					<fullName>End of Term Request</fullName>
+					<default>false</default>
+					<label>End of Term Request</label>
+				</value>
+				<value>
+					<fullName>EOL</fullName>
+					<default>false</default>
+					<label>EOL</label>
+				</value>
+				<value>
+					<fullName>ESR complaint</fullName>
+					<default>false</default>
+					<label>ESR complaint</label>
+				</value>
+				<value>
+					<fullName>Executive Complaint</fullName>
+					<default>false</default>
+					<label>Executive Complaint</label>
+				</value>
+				<value>
+					<fullName>Extension Rental Adjustment</fullName>
+					<default>false</default>
+					<label>Extension Rental Adjustment</label>
+				</value>
+				<value>
+					<fullName>Failed Verification</fullName>
+					<default>false</default>
+					<label>Failed Verification</label>
+				</value>
+				<value>
+					<fullName>Fees</fullName>
+					<default>false</default>
+					<label>Fees</label>
+				</value>
+				<value>
+					<fullName>Fees/Interest</fullName>
+					<default>false</default>
+					<label>Fees/Interest</label>
+				</value>
+				<value>
+					<fullName>Finance Charges/Interest</fullName>
+					<default>false</default>
+					<label>Finance Charges/Interest</label>
+				</value>
+				<value>
+					<fullName>Flow Agreement/Snap Agreement</fullName>
+					<default>false</default>
+					<label>Flow Agreement/Snap Agreement</label>
+				</value>
+				<value>
+					<fullName>Follow Up/ Negotiation</fullName>
+					<default>false</default>
+					<label>Follow Up/ Negotiation</label>
+				</value>
+				<value>
+					<fullName>Fraud Claim</fullName>
+					<default>false</default>
+					<label>Fraud Claim</label>
+				</value>
+				<value>
+					<fullName>Funding Payment Query</fullName>
+					<default>false</default>
+					<label>Funding Payment Query</label>
+				</value>
+				<value>
+					<fullName>General</fullName>
+					<default>false</default>
+					<label>General</label>
+				</value>
+				<value>
+					<fullName>General (FA)</fullName>
+					<default>false</default>
+					<label>General (FA)</label>
+				</value>
+				<value>
+					<fullName>General (G)</fullName>
+					<default>false</default>
+					<label>General (G)</label>
+				</value>
+				<value>
+					<fullName>General (MQ)</fullName>
+					<default>false</default>
+					<label>General (MQ)</label>
+				</value>
+				<value>
+					<fullName>General (PI)</fullName>
+					<default>false</default>
+					<label>General (PI)</label>
+				</value>
+				<value>
+					<fullName>General Payment Query</fullName>
+					<default>false</default>
+					<label>General Payment Query</label>
+				</value>
+				<value>
+					<fullName>Ghost Call</fullName>
+					<default>false</default>
+					<label>Ghost Call</label>
+				</value>
+				<value>
+					<fullName>Held Order</fullName>
+					<default>false</default>
+					<label>Held Order</label>
+				</value>
+				<value>
+					<fullName>Incident</fullName>
+					<default>false</default>
+					<label>Incident</label>
+				</value>
+				<value>
+					<fullName>Insurance Adjustment</fullName>
+					<default>false</default>
+					<label>Insurance Adjustment</label>
+				</value>
+				<value>
+					<fullName>Insurance Cancellation</fullName>
+					<default>false</default>
+					<label>Insurance Cancellation</label>
+				</value>
+				<value>
+					<fullName>Insurance Claim</fullName>
+					<default>false</default>
+					<label>Insurance Claim</label>
+				</value>
+				<value>
+					<fullName>Insurance Inquiry</fullName>
+					<default>false</default>
+					<label>Insurance Inquiry</label>
+				</value>
+				<value>
+					<fullName>Invoice Request</fullName>
+					<default>false</default>
+					<label>Invoice Request</label>
+				</value>
+				<value>
+					<fullName>Invoice Request (DR)</fullName>
+					<default>false</default>
+					<label>Invoice Request (DR)</label>
+				</value>
+				<value>
+					<fullName>Invoices/Archives</fullName>
+					<default>false</default>
+					<label>Invoices/Archives</label>
+				</value>
+				<value>
+					<fullName>Invoice Submission</fullName>
+					<default>false</default>
+					<label>Invoice Submission</label>
+				</value>
+				<value>
+					<fullName>Lease Doc Request</fullName>
+					<default>false</default>
+					<label>Lease Doc Request</label>
+				</value>
+				<value>
+					<fullName>Lease to Credit Card</fullName>
+					<default>false</default>
+					<label>Lease to Credit Card</label>
+				</value>
+				<value>
+					<fullName>Lease to DBC</fullName>
+					<default>false</default>
+					<label>Lease to DBC</label>
+				</value>
+				<value>
+					<fullName>Lease to Loan</fullName>
+					<default>false</default>
+					<label>Lease to Loan</label>
+				</value>
+				<value>
+					<fullName>Lease to Terms</fullName>
+					<default>false</default>
+					<label>Lease to Terms</label>
+				</value>
+				<value>
+					<fullName>Legal</fullName>
+					<default>false</default>
+					<label>Legal</label>
+				</value>
+				<value>
+					<fullName>Lift and Reapply Request</fullName>
+					<default>false</default>
+					<label>Lift and Reapply Request</label>
+				</value>
+				<value>
+					<fullName>Link/Unlink</fullName>
+					<default>false</default>
+					<label>Link/Unlink</label>
+				</value>
+				<value>
+					<fullName>Loan to Lease</fullName>
+					<default>false</default>
+					<label>Loan to Lease</label>
+				</value>
+				<value>
+					<fullName>Log In</fullName>
+					<default>false</default>
+					<label>Log In</label>
+				</value>
+				<value>
+					<fullName>Marcom</fullName>
+					<default>false</default>
+					<label>Marcom</label>
+				</value>
+				<value>
+					<fullName>MARCOM Audit</fullName>
+					<default>false</default>
+					<label>MARCOM Audit</label>
+				</value>
+				<value>
+					<fullName>Marketing Approvals</fullName>
+					<default>false</default>
+					<label>Marketing Approvals</label>
+				</value>
+				<value>
+					<fullName>Mass Update</fullName>
+					<default>false</default>
+					<label>Mass Update</label>
+				</value>
+				<value>
+					<fullName>Misdirected Call</fullName>
+					<default>false</default>
+					<label>Misdirected Call</label>
+				</value>
+				<value>
+					<fullName>Misdirected Calls</fullName>
+					<default>false</default>
+					<label>Misdirected Calls</label>
+				</value>
+				<value>
+					<fullName>MLA</fullName>
+					<default>false</default>
+					<label>MLA</label>
+				</value>
+				<value>
+					<fullName>MLA/Schedules</fullName>
+					<default>false</default>
+					<label>MLA/Schedules</label>
+				</value>
+				<value>
+					<fullName>MLA Schedule</fullName>
+					<default>false</default>
+					<label>MLA Schedule</label>
+				</value>
+				<value>
+					<fullName>Modification</fullName>
+					<default>false</default>
+					<label>Modification</label>
+				</value>
+				<value>
+					<fullName>MX Scheduling</fullName>
+					<default>false</default>
+					<label>MX Scheduling</label>
+				</value>
+				<value>
+					<fullName>MyDFS.com</fullName>
+					<default>false</default>
+					<label>MyDFS.com</label>
+				</value>
+				<value>
+					<fullName>Natural Disaster</fullName>
+					<default>false</default>
+					<label>Natural Disaster</label>
+				</value>
+				<value>
+					<fullName>No Account Refund</fullName>
+					<default>false</default>
+					<label>No Account Refund</label>
+				</value>
+				<value>
+					<fullName>Non Standard Quote</fullName>
+					<default>false</default>
+					<label>Non Standard Quote</label>
+				</value>
+				<value>
+					<fullName>One off Invoice Request</fullName>
+					<default>false</default>
+					<label>One off Invoice Request</label>
+				</value>
+				<value>
+					<fullName>On Hold</fullName>
+					<default>false</default>
+					<label>On Hold</label>
+				</value>
+				<value>
+					<fullName>Online</fullName>
+					<default>false</default>
+					<label>Online</label>
+				</value>
+				<value>
+					<fullName>Online Payments</fullName>
+					<default>false</default>
+					<label>Online Payments</label>
+				</value>
+				<value>
+					<fullName>Originations</fullName>
+					<default>false</default>
+					<label>Originations</label>
+				</value>
+				<value>
+					<fullName>Other</fullName>
+					<default>false</default>
+					<label>Other</label>
+				</value>
+				<value>
+					<fullName>Other (Legal)</fullName>
+					<default>false</default>
+					<label>Other (Legal)</label>
+				</value>
+				<value>
+					<fullName>Other (WSS)</fullName>
+					<default>false</default>
+					<label>Other (WSS)</label>
+				</value>
+				<value>
+					<fullName>Paperless Statement/Invoices</fullName>
+					<default>false</default>
+					<label>Paperless Statement/Invoices</label>
+				</value>
+				<value>
+					<fullName>Payment History</fullName>
+					<default>false</default>
+					<label>Payment History</label>
+				</value>
+				<value>
+					<fullName>Payment Issue</fullName>
+					<default>false</default>
+					<label>Payment Issue</label>
+				</value>
+				<value>
+					<fullName>Payment Issues</fullName>
+					<default>false</default>
+					<label>Payment Issues</label>
+				</value>
+				<value>
+					<fullName>Phone Payments</fullName>
+					<default>false</default>
+					<label>Phone Payments</label>
+				</value>
+				<value>
+					<fullName>PNC for Services</fullName>
+					<default>false</default>
+					<label>PNC for Services</label>
+				</value>
+				<value>
+					<fullName>Post-Charge Off</fullName>
+					<default>false</default>
+					<label>Post-Charge Off</label>
+				</value>
+				<value>
+					<fullName>Power of Attorney / Attorney Representation</fullName>
+					<default>false</default>
+					<label>Power of Attorney / Attorney Representation</label>
+				</value>
+				<value>
+					<fullName>Pre-Authorization</fullName>
+					<default>false</default>
+					<label>Pre-Authorization</label>
+				</value>
+				<value>
+					<fullName>Pre-Charge Off</fullName>
+					<default>false</default>
+					<label>Pre-Charge Off</label>
+				</value>
+				<value>
+					<fullName>Preliminary PD Grade</fullName>
+					<default>false</default>
+					<label>Preliminary PD Grade</label>
+				</value>
+				<value>
+					<fullName>Pricing Request</fullName>
+					<default>false</default>
+					<label>Pricing Approval</label>
+				</value>
+				<value>
+					<fullName>Pricing Inquiry</fullName>
+					<default>false</default>
+					<label>Pricing Inquiry</label>
+				</value>
+				<value>
+					<fullName>Privacy/Opt-Out</fullName>
+					<default>false</default>
+					<label>Privacy/Opt-Out</label>
+				</value>
+				<value>
+					<fullName>Proforma Invoice</fullName>
+					<default>false</default>
+					<label>Proforma Invoice</label>
+				</value>
+				<value>
+					<fullName>Promo Disclosure</fullName>
+					<default>false</default>
+					<label>Promo Disclosure</label>
+				</value>
+				<value>
+					<fullName>Promotional Purchases</fullName>
+					<default>false</default>
+					<label>Promotional Purchases</label>
+				</value>
+				<value>
+					<fullName>Purchase Inquiry</fullName>
+					<default>false</default>
+					<label>Purchase Inquiry</label>
+				</value>
+				<value>
+					<fullName>Quality Review</fullName>
+					<default>false</default>
+					<label>Quality Review</label>
+				</value>
+				<value>
+					<fullName>Quote</fullName>
+					<default>false</default>
+					<label>Quote</label>
+				</value>
+				<value>
+					<fullName>Recovery</fullName>
+					<default>false</default>
+					<label>Recovery</label>
+				</value>
+				<value>
+					<fullName>Refund (General)</fullName>
+					<default>false</default>
+					<label>Refund (General)</label>
+				</value>
+				<value>
+					<fullName>Refunds</fullName>
+					<default>false</default>
+					<label>Refunds</label>
+				</value>
+				<value>
+					<fullName>Request for remits</fullName>
+					<default>false</default>
+					<label>Request for remits</label>
+				</value>
+				<value>
+					<fullName>Research</fullName>
+					<default>false</default>
+					<label>Research</label>
+				</value>
+				<value>
+					<fullName>Residual Request</fullName>
+					<default>false</default>
+					<label>Residual Request</label>
+				</value>
+				<value>
+					<fullName>Restructure</fullName>
+					<default>false</default>
+					<label>Restructure</label>
+				</value>
+				<value>
+					<fullName>Return Request</fullName>
+					<default>false</default>
+					<label>Return Request</label>
+				</value>
+				<value>
+					<fullName>Reversed booking/funding</fullName>
+					<default>false</default>
+					<label>Reversed booking/funding</label>
+				</value>
+				<value>
+					<fullName>Sales</fullName>
+					<default>false</default>
+					<label>Sales</label>
+				</value>
+				<value>
+					<fullName>Sales Ops review</fullName>
+					<default>false</default>
+					<label>Sales Ops review</label>
+				</value>
+				<value>
+					<fullName>Sales request</fullName>
+					<default>false</default>
+					<label>Sales request</label>
+				</value>
+				<value>
+					<fullName>Same Day (emergency only)</fullName>
+					<default>false</default>
+					<label>Same Day (emergency only)</label>
+				</value>
+				<value>
+					<fullName>SARS</fullName>
+					<default>false</default>
+					<label>SARS</label>
+				</value>
+				<value>
+					<fullName>SCRA</fullName>
+					<default>false</default>
+					<label>SCRA</label>
+				</value>
+				<value>
+					<fullName>Service</fullName>
+					<default>false</default>
+					<label>Service</label>
+				</value>
+				<value>
+					<fullName>Servicing</fullName>
+					<default>false</default>
+					<label>Servicing</label>
+				</value>
+				<value>
+					<fullName>Setup MLA</fullName>
+					<default>false</default>
+					<label>Setup MLA</label>
+				</value>
+				<value>
+					<fullName>SNAP</fullName>
+					<default>false</default>
+					<label>SNAP</label>
+				</value>
+				<value>
+					<fullName>Software/ Services deal</fullName>
+					<default>false</default>
+					<label>Software/ Services deal</label>
+				</value>
+				<value>
+					<fullName>Statement/Invoice Delivery</fullName>
+					<default>false</default>
+					<label>Statement/Invoice Delivery</label>
+				</value>
+				<value>
+					<fullName>Statement/Invoice Summary</fullName>
+					<default>false</default>
+					<label>Statement/Invoice Summary</label>
+				</value>
+				<value>
+					<fullName>Submit/Resubmit Application</fullName>
+					<default>false</default>
+					<label>Submit/Resubmit Application</label>
+				</value>
+				<value>
+					<fullName>Tax Adjustment</fullName>
+					<default>false</default>
+					<label>Tax Adjustment</label>
+				</value>
+				<value>
+					<fullName>Taxes</fullName>
+					<default>false</default>
+					<label>Taxes</label>
+				</value>
+				<value>
+					<fullName>Taxes/Tax Exemption</fullName>
+					<default>false</default>
+					<label>Taxes/Tax Exemption</label>
+				</value>
+				<value>
+					<fullName>Termination</fullName>
+					<default>false</default>
+					<label>Termination</label>
+				</value>
+				<value>
+					<fullName>Terms and Conditions</fullName>
+					<default>false</default>
+					<label>Terms and Conditions</label>
+				</value>
+				<value>
+					<fullName>Terms to DFS</fullName>
+					<default>false</default>
+					<label>Terms to DFS</label>
+				</value>
+				<value>
+					<fullName>Terms to Lease</fullName>
+					<default>false</default>
+					<label>Terms to Lease</label>
+				</value>
+				<value>
+					<fullName>Transfer Account</fullName>
+					<default>false</default>
+					<label>Transfer Account</label>
+				</value>
+				<value>
+					<fullName>Transfer and Assumption</fullName>
+					<default>false</default>
+					<label>Transfer and Assumption</label>
+				</value>
+				<value>
+					<fullName>Transfer Call</fullName>
+					<default>false</default>
+					<label>Transfer Call</label>
+				</value>
+				<value>
+					<fullName>Try Buy To Lease</fullName>
+					<default>false</default>
+					<label>Try Buy To Lease</label>
+				</value>
+				<value>
+					<fullName>UCC Request</fullName>
+					<default>false</default>
+					<label>UCC Request</label>
+				</value>
+				<value>
+					<fullName>Unapplied Suspense</fullName>
+					<default>false</default>
+					<label>Unapplied Suspense</label>
+				</value>
+				<value>
+					<fullName>Unwind</fullName>
+					<default>false</default>
+					<label>Unwind</label>
+				</value>
+				<value>
+					<fullName>Upgrade Request</fullName>
+					<default>false</default>
+					<label>Upgrade Request</label>
+				</value>
+				<value>
+					<fullName>VAT Adjustment</fullName>
+					<default>false</default>
+					<label>VAT Adjustment</label>
+				</value>
+				<value>
+					<fullName>Vendor Complaint</fullName>
+					<default>false</default>
+					<label>Vendor Complaint</label>
+				</value>
+				<value>
+					<fullName>Waiver</fullName>
+					<default>false</default>
+					<label>Waiver</label>
+				</value>
+				<value>
+					<fullName>Walk-to-Manifest</fullName>
+					<default>false</default>
+					<label>Walk-to-Manifest</label>
+				</value>
+				<value>
+					<fullName>Welcome Letter</fullName>
+					<default>false</default>
+					<label>Welcome Letter</label>
+				</value>
+				<value>
+					<fullName>Wire Payments</fullName>
+					<default>false</default>
+					<label>Wire Payments</label>
+				</value>
+				<value>
+					<fullName>With Holding Tax</fullName>
+					<default>false</default>
+					<label>With Holding Tax</label>
+				</value>
+				<value>
+					<fullName>Write-Off</fullName>
+					<default>false</default>
+					<label>Write-Off</label>
+				</value>
+				<value>
+					<fullName>Wrong Number</fullName>
+					<default>false</default>
+					<label>Wrong Number</label>
+				</value>
+				<value>
+					<fullName>WSS Login</fullName>
+					<default>false</default>
+					<label>WSS Login</label>
+				</value>
+				<value>
+					<fullName>WSS Payments</fullName>
+					<default>false</default>
+					<label>WSS Payments</label>
+				</value>
+				<value>
+					<fullName>WSS Profile</fullName>
+					<default>false</default>
+					<label>WSS Profile</label>
+				</value>
+				<value>
+					<fullName>WTM</fullName>
+					<default>false</default>
+					<label>WTM</label>
+				</value>
+			</valueSetDefinition>
+			<valueSettings>
+				<controllingFieldValue>General Inquiry</controllingFieldValue>
+				<valueName>Basic Account Information</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>General Inquiry</controllingFieldValue>
+				<valueName>Basic DFS/Dell Information</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>General Inquiry</controllingFieldValue>
+				<valueName>Basic Product Questions</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>General Inquiry</controllingFieldValue>
+				<controllingFieldValue>None</controllingFieldValue>
+				<valueName>Callback Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>General Inquiry</controllingFieldValue>
+				<valueName>Failed Verification</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>General Inquiry</controllingFieldValue>
+				<valueName>Privacy/Opt-Out</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>General Inquiry</controllingFieldValue>
+				<valueName>Terms and Conditions</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>ACH Debit</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Autopay - Paper Form</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Basic Payment Question</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Check Payments</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Online Payments</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Payment Issue</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Payment Issues</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Phone Payments</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Refunds</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Payments</controllingFieldValue>
+				<valueName>Wire Payments</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<controllingFieldValue>Address Change</controllingFieldValue>
+				<valueName>Account Booking Issue</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<valueName>Account Name</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<valueName>Address/Phone/Email</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<controllingFieldValue>Address Change</controllingFieldValue>
+				<valueName>Close/Reopen Account</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<valueName>Close Account</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<valueName>Credit Limit</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<valueName>Custodian/Auth Users</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<valueName>Designee</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<controllingFieldValue>Address Change</controllingFieldValue>
+				<valueName>Duplicate Account</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<valueName>Link/Unlink</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Account Updates</controllingFieldValue>
+				<valueName>Transfer Account</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Other DFS/Dell Departments</controllingFieldValue>
+				<valueName>Dell Care</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Other DFS/Dell Departments</controllingFieldValue>
+				<valueName>Dell Sales</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Other DFS/Dell Departments</controllingFieldValue>
+				<valueName>Dell Tech</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Other DFS/Dell Departments</controllingFieldValue>
+				<valueName>DFS Collections</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WSS</controllingFieldValue>
+				<valueName>Other (WSS)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WSS</controllingFieldValue>
+				<valueName>WSS Login</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WSS</controllingFieldValue>
+				<valueName>WSS Payments</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WSS</controllingFieldValue>
+				<valueName>WSS Profile</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Balance Dispute</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Billing Dispute</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Billing Disputes</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>CPP Charges</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Credit/Debit Adjustment</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Fees</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Fees/Interest</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Finance Charges/Interest</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Paperless Statement/Invoices</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Promotional Purchases</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Purchase Inquiry</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Statement/Invoice Delivery</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Statement/Invoice Summary</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Taxes</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Statement/Invoice Inquiry</controllingFieldValue>
+				<valueName>Taxes/Tax Exemption</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<controllingFieldValue>Transfer and Assumption</controllingFieldValue>
+				<valueName>Assignment/Assumption</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>Credit/Credit Bureau</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>Debt Validation</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>DFS Remediation</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>Fraud Claim</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>Held Order</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<controllingFieldValue>Contract Information</controllingFieldValue>
+				<controllingFieldValue>Collections</controllingFieldValue>
+				<valueName>Legal</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>Natural Disaster</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<controllingFieldValue>PLI Credit</controllingFieldValue>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<controllingFieldValue>Sales Ops</controllingFieldValue>
+				<valueName>Other</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>Power of Attorney / Attorney Representation</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>Promo Disclosure</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>SCRA</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Special</controllingFieldValue>
+				<valueName>Walk-to-Manifest</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>PLI Credit</controllingFieldValue>
+				<valueName>Credit Line for Customer - PLI</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>PLI Credit</controllingFieldValue>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>Software/ Services deal</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Other</controllingFieldValue>
+				<controllingFieldValue>Document Requests</controllingFieldValue>
+				<controllingFieldValue>Records Management</controllingFieldValue>
+				<valueName>Document Requests</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Legal</controllingFieldValue>
+				<valueName>Flow Agreement/Snap Agreement</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Legal</controllingFieldValue>
+				<controllingFieldValue>RTPA</controllingFieldValue>
+				<valueName>MLA</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Legal</controllingFieldValue>
+				<valueName>MLA Schedule</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Legal</controllingFieldValue>
+				<valueName>Other (Legal)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Complaints</controllingFieldValue>
+				<valueName>Customer Complaint</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Complaints</controllingFieldValue>
+				<valueName>Executive Complaint</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Complaints</controllingFieldValue>
+				<valueName>Vendor Complaint</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Contract Modification - Post-funding</controllingFieldValue>
+				<controllingFieldValue>Contract Modification - Pre-funding</controllingFieldValue>
+				<controllingFieldValue>Booking</controllingFieldValue>
+				<valueName>Restructure</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Contract Information</controllingFieldValue>
+				<controllingFieldValue>Fee Queries</controllingFieldValue>
+				<valueName>Collections</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Contract Information</controllingFieldValue>
+				<valueName>Credit Note Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Contract Information</controllingFieldValue>
+				<controllingFieldValue>Fee Queries</controllingFieldValue>
+				<controllingFieldValue>General</controllingFieldValue>
+				<controllingFieldValue>Partner Issues</controllingFieldValue>
+				<valueName>General</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Contract Information</controllingFieldValue>
+				<valueName>Invoice Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Contract Information</controllingFieldValue>
+				<valueName>Lease Doc Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Contract Information</controllingFieldValue>
+				<valueName>Payment History</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Contract Information</controllingFieldValue>
+				<valueName>SARS</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>Charge Off Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>Credit</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>Credit History Amendment</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>Credit Line for Customer</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>Credit Line for Partner</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>Credit Report Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>PNC for Services</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Credit</controllingFieldValue>
+				<valueName>Preliminary PD Grade</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>ESR</controllingFieldValue>
+				<valueName>ESR complaint</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Customer Name Change / CCAN Merge</controllingFieldValue>
+				<valueName>CCAN Merge</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Customer Name Change / CCAN Merge</controllingFieldValue>
+				<valueName>Customer Name Change</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>DFS APS</controllingFieldValue>
+				<valueName>DFS APS</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>DFS APS</controllingFieldValue>
+				<valueName>DFS APS Reports</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Direct Debit Queries</controllingFieldValue>
+				<valueName>Direct Debit Queries</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Custom Invoicing</controllingFieldValue>
+				<valueName>Invoice Submission</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Custom Invoicing</controllingFieldValue>
+				<valueName>One off Invoice Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>Asset Register Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>Early Term Quote</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>End of Term Quote</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>End of Term Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>EOL</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>Follow Up/ Negotiation</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>Non Standard Quote</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>Residual Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>Return Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>End of Lease</controllingFieldValue>
+				<valueName>Upgrade Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Fee Queries</controllingFieldValue>
+				<valueName>End of Lease</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Fee Queries</controllingFieldValue>
+				<valueName>Servicing</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Asset Adjustment</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Asset Returns Termination</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Booking Error</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Contract Reversal</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Credit Restructure</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Extension Rental Adjustment</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>General (FA)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Insurance Adjustment</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Reversed booking/funding</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Tax Adjustment</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Termination</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Unwind</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>VAT Adjustment</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Waiver</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financial Adjustments</controllingFieldValue>
+				<valueName>Write-Off</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Funding Payment Query</controllingFieldValue>
+				<valueName>Funding Payment Query</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>General</controllingFieldValue>
+				<valueName>General (G)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Address Change</controllingFieldValue>
+				<valueName>Address Change - Asset</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Address Change</controllingFieldValue>
+				<valueName>Address Change - Customer</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Banking Changes</controllingFieldValue>
+				<valueName>Banking Changes</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Billing Invoice Issue</controllingFieldValue>
+				<valueName>Billing Invoice Issue</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Booking</controllingFieldValue>
+				<valueName>Modification</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Booking</controllingFieldValue>
+				<valueName>MX Scheduling</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Booking</controllingFieldValue>
+				<valueName>On Hold</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Call Back Customer</controllingFieldValue>
+				<valueName>Originations</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Call Back Customer</controllingFieldValue>
+				<valueName>Sales</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Call Back Customer</controllingFieldValue>
+				<valueName>Service</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Cash Apps</controllingFieldValue>
+				<valueName>Accounts Payable-Internal Transfer</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Cash Apps</controllingFieldValue>
+				<valueName>Autopay Setup</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Cash Apps</controllingFieldValue>
+				<valueName>Cash App Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Cash Apps</controllingFieldValue>
+				<valueName>Cash UI Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Cash Apps</controllingFieldValue>
+				<controllingFieldValue>Direct Pay Invoice</controllingFieldValue>
+				<valueName>Direct Pay Invoice</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Cash Apps</controllingFieldValue>
+				<valueName>General Payment Query</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Cash Apps</controllingFieldValue>
+				<controllingFieldValue>Lift and Reapply Request</controllingFieldValue>
+				<valueName>Lift and Reapply Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Cash Apps</controllingFieldValue>
+				<valueName>No Account Refund</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Marcom</controllingFieldValue>
+				<valueName>MARCOM Audit</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Marcom</controllingFieldValue>
+				<valueName>Marketing Approvals</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Marcom</controllingFieldValue>
+				<valueName>Online</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Document Requests</controllingFieldValue>
+				<valueName>Invoice Request (DR)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>RTPA</controllingFieldValue>
+				<valueName>DBC</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>RTPA</controllingFieldValue>
+				<valueName>DPA</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>RTPA</controllingFieldValue>
+				<valueName>SNAP</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Transfer Call</controllingFieldValue>
+				<valueName>Transfer Call</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Insurance Inquiry</controllingFieldValue>
+				<valueName>Batch Cancellation</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Insurance Inquiry</controllingFieldValue>
+				<valueName>Insurance Cancellation</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Insurance Inquiry</controllingFieldValue>
+				<valueName>Insurance Claim</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Insurance Inquiry</controllingFieldValue>
+				<valueName>Insurance Inquiry</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>3rd Party Caller</controllingFieldValue>
+				<valueName>3rd Party Caller</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financing Connect</controllingFieldValue>
+				<valueName>Company Search</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financing Connect</controllingFieldValue>
+				<valueName>Credit Check</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financing Connect</controllingFieldValue>
+				<valueName>Doc Generation</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financing Connect</controllingFieldValue>
+				<valueName>Incident</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financing Connect</controllingFieldValue>
+				<valueName>Log In</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financing Connect</controllingFieldValue>
+				<valueName>Quote</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Financing Connect</controllingFieldValue>
+				<valueName>Submit/Resubmit Application</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Maintenance Queries</controllingFieldValue>
+				<valueName>Contract Info</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Maintenance Queries</controllingFieldValue>
+				<valueName>Customer/Contact Info</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Maintenance Queries</controllingFieldValue>
+				<valueName>General (MQ)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Maintenance Queries</controllingFieldValue>
+				<valueName>MyDFS.com</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Maintenance Queries</controllingFieldValue>
+				<valueName>Research</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Maintenance Queries</controllingFieldValue>
+				<valueName>Welcome Letter</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Maintenance Queries</controllingFieldValue>
+				<valueName>With Holding Tax</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Closed Loop</controllingFieldValue>
+				<valueName>Closed Loop</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Partner Issues</controllingFieldValue>
+				<valueName>(na)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Partner Issues</controllingFieldValue>
+				<valueName>General (PI)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Pricing Request</controllingFieldValue>
+				<valueName>Pricing Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Pricing Request</controllingFieldValue>
+				<valueName>Pricing Inquiry</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Pay Plan Proposal</controllingFieldValue>
+				<valueName>Client Services-Pay Plan Proposal</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Refund Request</controllingFieldValue>
+				<valueName>Cash Ops-Refund</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Refund Request</controllingFieldValue>
+				<valueName>Cash Ops-Refund - Priority</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Refund Request</controllingFieldValue>
+				<valueName>Refund (General)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Refund Request</controllingFieldValue>
+				<valueName>Same Day (emergency only)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Request for Remits</controllingFieldValue>
+				<valueName>Request for remits</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Transfer and Assumption</controllingFieldValue>
+				<valueName>CCAN Merge only</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Transfer and Assumption</controllingFieldValue>
+				<valueName>Contract Changes</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Transfer and Assumption</controllingFieldValue>
+				<valueName>Transfer and Assumption</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Unapplied Suspense</controllingFieldValue>
+				<valueName>Unapplied Suspense</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Fraud</controllingFieldValue>
+				<controllingFieldValue>Fraud Claim</controllingFieldValue>
+				<valueName>Post-Charge Off</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Fraud</controllingFieldValue>
+				<controllingFieldValue>Fraud Claim</controllingFieldValue>
+				<valueName>Pre-Charge Off</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>DCN to DCN</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>DFS to Terms</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>Lease to Credit Card</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>Lease to DBC</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>Lease to Loan</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>Lease to Terms</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>Loan to Lease</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>Terms to DFS</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>Terms to Lease</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>WTM</controllingFieldValue>
+				<valueName>Try Buy To Lease</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Scheduling</controllingFieldValue>
+				<valueName>Booking</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Scheduling</controllingFieldValue>
+				<valueName>Contract Audit</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Scheduling</controllingFieldValue>
+				<controllingFieldValue>Sales Ops</controllingFieldValue>
+				<valueName>Pre-Authorization</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Scheduling</controllingFieldValue>
+				<valueName>Quality Review</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Records Management</controllingFieldValue>
+				<valueName>Invoices/Archives</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Records Management</controllingFieldValue>
+				<valueName>MLA/Schedules</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Records Management</controllingFieldValue>
+				<valueName>UCC Request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Mass update</controllingFieldValue>
+				<valueName>Mass Update</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Marketing</controllingFieldValue>
+				<valueName>Marcom</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Collections</controllingFieldValue>
+				<valueName>Recovery</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Sales Ops</controllingFieldValue>
+				<valueName>Credit (SO)</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Sales Ops</controllingFieldValue>
+				<valueName>Sales request</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Sales Ops</controllingFieldValue>
+				<valueName>Setup MLA</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Sales Ops</controllingFieldValue>
+				<valueName>WTM</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Calls</controllingFieldValue>
+				<controllingFieldValue>Misdirected Call</controllingFieldValue>
+				<valueName>Ghost Call</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Calls</controllingFieldValue>
+				<valueName>Misdirected Calls</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Misdirected Call</controllingFieldValue>
+				<valueName>Dropped Call</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Misdirected Call</controllingFieldValue>
+				<valueName>Misdirected Call</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Misdirected Call</controllingFieldValue>
+				<valueName>Wrong Number</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Letters</controllingFieldValue>
+				<valueName>Credit Decline Letter</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Letters</controllingFieldValue>
+				<valueName>Credit Incomplete Letter</valueName>
+			</valueSettings>
+			<valueSettings>
+				<controllingFieldValue>Letters</controllingFieldValue>
+				<valueName>Proforma Invoice</valueName>
+			</valueSettings>
+		</valueSet>
+	</fields>
+
+	<validationRules>
+		<fullName>Branch_Code_Mandatory</fullName>
+		<active>true</active>
+		<description>Branch Code should be mandatory if Funding Status = Funded</description>
+		<errorConditionFormula>
+			AND(
+			ISPICKVAL(Funding_Status__c , &apos;Funded&apos;) ,
+			ISBLANK( Branch_Code__c )
+			)
+		</errorConditionFormula>
+		<errorDisplayField>Branch_Code__c</errorDisplayField>
+		<errorMessage>Branch Code must be filled when Funding Status is &apos;Funded&apos;</errorMessage>
+	</validationRules>
+	<validationRules>
+		<fullName>Funding_Status_Mandatory</fullName>
+		<active>true</active>
+		<description>Funding Status should be mandatory for some Inquiry Types</description>
+		<errorConditionFormula>
+			AND(
+			ISPICKVAL( Funding_Status__c , &apos;&apos; ),
+			OR( ISPICKVAL( Inquiry_Type__c, &apos;Contract Modification (Financed Amount, Interim Rent, Taxes)&apos;),
+			ISPICKVAL( Inquiry_Type__c , &apos;Variable Payments or Payment Due Date&apos;),
+			ISPICKVAL( Inquiry_Type__c , &apos;Change in Term / Lease Type&apos;),
+			ISPICKVAL( Inquiry_Type__c, &apos;Change in Commencement Date&apos;)
+			)
+			)
+		</errorConditionFormula>
+		<errorDisplayField>Funding_Status__c</errorDisplayField>
+		<errorMessage>Funding Status must be selected for this Inquiry Type</errorMessage>
+	</validationRules>
+    <validationRules>
+        <fullName>Inquiry_Type_Mandatory</fullName>
+        <active>true</active>
+        <description>Inquiry Type should be mandatory for Pricing Inquiry Sub Type</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(SubType__c, &apos;Pricing Inquiry&apos;) ,
+ISPICKVAL(Inquiry_Type__c, &apos;&apos;)
+			)</errorConditionFormula>
+        <errorDisplayField>Inquiry_Type__c</errorDisplayField>
+        <errorMessage>Inquiry Type must be selected when Pricing Request Sub Type is &apos;Pricing Inquiry</errorMessage>
+    </validationRules>
+	<validationRules>
+        <fullName>RateChangeMandatory</fullName>
+        <active>true</active>
+        <description>Makes Rate Change required when case Sub-type is &quot;Pricing Approval&quot;</description>
+        <errorConditionFormula>AND(
+				OR(
+								ISPICKVAL(Status , &apos;Closed&apos;),
+								ISPICKVAL(Status , &apos;Declined&apos;),
+								ISPICKVAL(Status , &apos;Priced&apos;),
+								ISPICKVAL(Status , &apos;Pricing Approved&apos;)
+				),
+				ISPICKVAL(SubType__c , &apos;Pricing Request&apos;) ,
+				ISPICKVAL(Rate_Change__c, &apos;&apos;)
+)</errorConditionFormula>
+        <errorDisplayField>Rate_Change__c</errorDisplayField>
+        <errorMessage>Rate Change must be selected when Sub-type is &apos;Pricing Approval&apos;</errorMessage>
+    </validationRules>
+	<validationRules>
+		<fullName>ScenarioNumbersMandatory</fullName>
+		<active>true</active>
+		<description>Makes Scenario Numbers required when case Sub-type is &quot;Pricing Approval&quot;</description>
+		<errorConditionFormula>
+			AND(
+			ISPICKVAL(SubType__c , &apos;Pricing Request&apos;) ,    ISBLANK(Scenario__c)
+			)
+		</errorConditionFormula>
+		<errorDisplayField>Scenario__c</errorDisplayField>
+		<errorMessage>Scenario Numbers must be selected when Sub-type is &apos;Pricing Approval&apos;</errorMessage>
+	</validationRules>
+
+	<validationRules>
+		<fullName>BeneficialOwnerVerificationMandatory</fullName>
+		<active>true</active>
+		<description>This rule will enforce the user to add at least one Beneficial Owner related to the case when the case option is &quot;Beneficial Owner Verification&quot;.</description>
+		<errorConditionFormula>AND(
+NOT(ISNEW()),
+Number_of_Beneficial_Owners__c = 0,
+ISPICKVAL(Case_Option__c, &apos;Beneficial Owner Verification&apos;),
+NOT(ISPICKVAL(Status, &apos;Canceled&apos;)),
+NOT(ISPICKVAL(Status,&apos;Closed - Duplicate&apos;)),
+ISPICKVAL ( BO_Exception__c,&apos;&apos;)
+)</errorConditionFormula>
+		<errorMessage>Add at least one Beneficial Owner or a BO Exception to this case before edit/close.</errorMessage>
+	</validationRules>
+	<validationRules>
+		<fullName>Close_Rtpa_Decision</fullName>
+		<active>true</active>
+		<description>If the user tries to close the case without clicking the button, the system will verify if the Decision Code and Case Closure Decision were filled.</description>
+		<errorConditionFormula>AND(
+ISPICKVAL(Status, &apos;Resubmit&apos;), 
+ISPICKVAL(Type, &apos;RTPA&apos;),  
+OR(ISPICKVAL(Case_Closure_Decision__c, &quot;&quot;), ISPICKVAL(Decision_Code__c, &quot;&quot;))
+)</errorConditionFormula>
+		<errorMessage>Decision Code and Case Closure Decision cannot be blank.</errorMessage>
+	</validationRules>
+
+	<recordTypes>
+		<fullName>ALL_LATAM_Fraud</fullName>
+		<active>true</active>
+		<businessProcess>EMEA Support Process</businessProcess>
+		<description>Used to display all type, subtype, option on LATAM contract detail page for Mexico Fraud Users.</description>
+		<label>ALL LATAM Fraud</label>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>Asset Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Assignment %26 Assumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Assignment%2FAssumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Billing Invoice Issue</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash App Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Ops-Refund - Priority</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash UI Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Changes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Info</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer%2FContact Info</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DCN to DCN</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS to Terms</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Term Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Extension Rental Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28FA%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28G%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28MQ%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28PI%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Request %28DR%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease Doc Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Credit Card</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to DBC</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Loan</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Terms</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Loan to Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MX Scheduling</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Modification</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>On Hold</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Post-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Research</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Residual Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Restructure</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Reversed booking%2Ffunding</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Tax Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms to DFS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms to Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Try Buy To Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Unwind</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Waiver</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Write-Off</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+	<recordTypes>
+		<fullName>ALL_Admin</fullName>
+		<active>true</active>
+		<businessProcess>EMEA Support Process</businessProcess>
+		<description>Used as default record type for Admins to display all type, subtype, case option on Mexico contract detail page.</description>
+		<label>ALL Admin</label>
+		<picklistValues>
+			<picklist>Origin</picklist>
+			<values>
+				<fullName>Adobe</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - ANZ</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Benelux</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - DACH</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - France</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Global</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Iberia</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Insurance Cancellations</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Italy</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Mexico</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Nordics</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Poland</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - UKI</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Financing Connect</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Internal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Phone</fullName>
+				<default>true</default>
+			</values>
+			<values>
+				<fullName>Web</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Priority</picklist>
+			<values>
+				<fullName>High</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Immediate</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Low</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Normal</fullName>
+				<default>true</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Reason</picklist>
+			<values>
+				<fullName>Complex functionality</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Existing problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Instructions not clear</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>New problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>User didn%27t attend training</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>%28na%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Accounts Payable-Internal Transfer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Address Change - Asset</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Address Change - Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Asset Register Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Asset Returns Termination</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Assignment %26 Assumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Banking Changes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Batch Cancellation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Billing Invoice Issue</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking Error</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>CCAN Merge</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>CCAN Merge only</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash App Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Ops-Refund - Priority</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash UI Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Charge Off Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Client Services-Pay Plan Proposal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Collections</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Company Search</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Changes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Info</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Reversal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Check</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit History Amendment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Note Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Report Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Restructure</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer Complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer Name Change</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer%2FContact Info</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DCN to DCN</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS to Terms</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Debit Queries</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Doc Generation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Early Term Quote</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Term Quote</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Executive Complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Extension Rental Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Flow Agreement%2FSnap Agreement</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Follow Up%2F Negotiation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Funding Payment Query</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28FA%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28G%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28MQ%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28PI%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General Payment Query</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Incident</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Cancellation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Claim</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Request %28DR%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease Doc Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Credit Card</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to DBC</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Loan</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Terms</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Loan to Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Log In</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA Schedule</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Modification</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MyDFS%2Ecom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Non Standard Quote</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>On Hold</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Originations</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Payment History</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Post-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Quote</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Refund %28General%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Request for remits</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Research</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Residual Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Restructure</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Return Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Reversed booking%2Ffunding</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>SARS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Same Day %28emergency only%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Service</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Servicing</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Submit%2FResubmit Application</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Tax Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Termination</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms to DFS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms to Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Transfer and Assumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Try Buy To Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Unapplied Suspense</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Unwind</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Upgrade Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Vendor Complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Waiver</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Welcome Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>With Holding Tax</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Write-Off</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Type</picklist>
+			<values>
+				<fullName>Address Change</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Banking Changes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Billing Invoice Issue</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Call Back Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Apps</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Complaints</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Information</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Modification - Post-funding</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Modification - Pre-funding</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer Name Change %2F CCAN Merge</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Debit Queries</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Document Requests</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fee Queries</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Financial Adjustments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Financing Connect</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fraud Claim</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Funding Payment Query</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Maintenance Queries</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pay Plan Proposal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Refund Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Request for Remits</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Transfer and Assumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Unapplied Suspense</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WTM</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+	<recordTypes>
+		<fullName>All_Offline</fullName>
+		<active>true</active>
+		<businessProcess>OFFLINE Support Process</businessProcess>
+		<description>This record type is created to show all type and sub type values on the No account Mexico product select page for all users except Fraud user.</description>
+		<label>All Offline</label>
+		<picklistValues>
+			<picklist>Origin</picklist>
+			<values>
+				<fullName>Adobe</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Global</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Mexico</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Internal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Phone</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Priority</picklist>
+			<values>
+				<fullName>High</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Low</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Normal</fullName>
+				<default>true</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Reason</picklist>
+			<values>
+				<fullName>Complex functionality</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Existing problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Instructions not clear</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>New problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>User didn%27t attend training</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>Booking</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit %28SO%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Decline Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Incomplete Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Partner</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Pay Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Document Requests</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Flow Agreement%2FSnap Agreement</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Ghost Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Submission</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoices%2FArchives</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MARCOM Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA Schedule</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marketing Approvals</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Mass Update</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Misdirected Calls</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>No Account Refund</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>One off Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Online</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other %28Legal%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>PNC for Services</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Authorization</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Preliminary PD Grade</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Proforma Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Recovery</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Setup MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Software%2F Services deal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WTM</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Type</picklist>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Records Management</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Scheduling</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+	<recordTypes>
+		<fullName>All_Offline_Fraud</fullName>
+		<active>true</active>
+		<businessProcess>OFFLINE Support Process</businessProcess>
+		<description>This record type is created to show all type and sub type values on the No account product select page for Admin/Fraud user.</description>
+		<label>All Offline Fraud</label>
+		<picklistValues>
+			<picklist>Origin</picklist>
+			<values>
+				<fullName>Adobe</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Canada</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Mexico</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - US</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fax</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Internal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Phone</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Priority</picklist>
+			<values>
+				<fullName>High</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Low</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Normal</fullName>
+				<default>true</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Reason</picklist>
+			<values>
+				<fullName>Complex functionality</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Existing problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Instructions not clear</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>New problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>User didn%27t attend training</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>Autopay Setup</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit %28SO%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Decline Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Incomplete Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer - PLI</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Partner</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Pay Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Document Requests</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Flow Agreement%2FSnap Agreement</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Ghost Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Submission</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoices%2FArchives</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MARCOM Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA Schedule</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marketing Approvals</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Mass Update</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Misdirected Calls</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>No Account Refund</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>One off Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Online</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other %28Legal%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>PNC for Services</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Post-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Authorization</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Preliminary PD Grade</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Proforma Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Setup MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Software%2F Services deal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WTM</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Type</picklist>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fraud Claim</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Records Management</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Scheduling</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+	<recordTypes>
+		<fullName>All_Offline_Fraud_CA</fullName>
+		<active>true</active>
+		<businessProcess>OFFLINE Support Process</businessProcess>
+		<description>Used to show all type and sub type values on the No account product select page for Canada Admin/Fraud users.</description>
+		<label>All Offline Fraud CA</label>
+		<picklistValues>
+			<picklist>Origin</picklist>
+			<values>
+				<fullName>Adobe</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Canada</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Mexico</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - US</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fax</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Internal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Phone</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Priority</picklist>
+			<values>
+				<fullName>High</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Low</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Normal</fullName>
+				<default>true</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Reason</picklist>
+			<values>
+				<fullName>Complex functionality</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Existing problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Instructions not clear</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>New problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>User didn%27t attend training</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>Autopay Setup</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit %28SO%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Decline Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Incomplete Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer - PLI</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Partner</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit%2FCredit Bureau</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Pay Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Document Requests</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Flow Agreement%2FSnap Agreement</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Ghost Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Submission</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoices%2FArchives</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MARCOM Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA Schedule</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marketing Approvals</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Mass Update</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Misdirected Calls</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>No Account Refund</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>One off Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Online</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other %28Legal%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>PNC for Services</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Post-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Authorization</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Preliminary PD Grade</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Proforma Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Quality Review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Recovery</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Setup MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Software%2F Services deal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>UCC Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WTM</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Type</picklist>
+			<values>
+				<fullName>Cash Apps</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Collections</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Custom Invoicing</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fraud Claim</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Letters</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Records Management</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Scheduling</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+	<recordTypes>
+		<fullName>All_Offline_Fraud_US</fullName>
+		<active>true</active>
+		<businessProcess>OFFLINE Support Process</businessProcess>
+		<description>Used to show all type and sub type values on the No account product select page for US Admin/Fraud users.</description>
+		<label>All Offline Fraud US</label>
+		<picklistValues>
+			<picklist>Origin</picklist>
+			<values>
+				<fullName>Adobe</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Canada</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Mexico</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - US</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fax</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Internal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Phone</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Priority</picklist>
+			<values>
+				<fullName>High</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Low</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Normal</fullName>
+				<default>true</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Reason</picklist>
+			<values>
+				<fullName>Complex functionality</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Existing problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Instructions not clear</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>New problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>User didn%27t attend training</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>Autopay Setup</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit %28SO%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Decline Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Incomplete Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer - PLI</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Partner</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit%2FCredit Bureau</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Debt Validation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Pay Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Document Requests</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Flow Agreement%2FSnap Agreement</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Ghost Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Submission</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoices%2FArchives</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MARCOM Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA Schedule</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marketing Approvals</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Mass Update</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Misdirected Calls</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>No Account Refund</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>One off Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Online</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other %28Legal%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>PNC for Services</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Post-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Authorization</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Preliminary PD Grade</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Proforma Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Quality Review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Recovery</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Setup MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Software%2F Services deal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>UCC Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WTM</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Type</picklist>
+			<values>
+				<fullName>Cash Apps</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Collections</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Custom Invoicing</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fraud Claim</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Letters</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Records Management</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Scheduling</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Special</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+	<recordTypes>
+		<fullName>All_Offline_US</fullName>
+		<active>true</active>
+		<businessProcess>OFFLINE Support Process</businessProcess>
+		<description>Used to show all type and sub type values on the No account product select page for US non Fraud users.</description>
+		<label>All Offline US</label>
+		<picklistValues>
+			<picklist>Origin</picklist>
+			<values>
+				<fullName>Adobe</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Canada</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - Mexico</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Email - US</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fax</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Internal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Phone</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Priority</picklist>
+			<values>
+				<fullName>High</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Low</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Normal</fullName>
+				<default>true</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Reason</picklist>
+			<values>
+				<fullName>Complex functionality</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Existing problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Instructions not clear</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>New problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>User didn%27t attend training</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>Autopay Setup</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit %28SO%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Decline Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Incomplete Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer - PLI</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Partner</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit%2FCredit Bureau</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Debt Validation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Pay Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Document Requests</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Flow Agreement%2FSnap Agreement</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Ghost Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Submission</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoices%2FArchives</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MARCOM Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA Schedule</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marketing Approvals</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Mass Update</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Misdirected Calls</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>No Account Refund</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>One off Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Online</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other %28Legal%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>PNC for Services</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Authorization</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Preliminary PD Grade</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Proforma Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Quality Review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Recovery</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Setup MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Software%2F Services deal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>UCC Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WTM</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Type</picklist>
+			<values>
+				<fullName>Cash Apps</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Collections</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Custom Invoicing</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Letters</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Records Management</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Scheduling</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Special</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+	<recordTypes>
+		<fullName>Offline_Pricing_Request</fullName>
+		<active>true</active>
+		<businessProcess>Pricing OFFLINE Support Process</businessProcess>
+		<description>Record type for pricing requests. No account only</description>
+		<label>Offline Pricing Request</label>
+		<picklistValues>
+			<picklist>Funding_Status__c</picklist>
+			<values>
+				<fullName>Funded</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Not Funded</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+        <picklistValues>
+            <picklist>Inquiry_Type__c</picklist>
+            <values>
+                <fullName>Change in Commencement Date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Change in Term %2F Lease Type</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Modification %28Financed Amount%2C Interim Rent%2C Taxes%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IRR Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of Consolidation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rate or Product Guidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Inquiry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scenario Modification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Variable Payments or Payment Due Date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walk to Manifest</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+		<picklistValues>
+			<picklist>Origin</picklist>
+			<values>
+				<fullName>Internal</fullName>
+				<default>true</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Pricing_Request_Type__c</picklist>
+			<values>
+				<fullName>Non-Sales Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Inquiry</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Priority</picklist>
+			<values>
+				<fullName>High</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Immediate</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Low</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Normal</fullName>
+				<default>true</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Reason</picklist>
+			<values>
+				<fullName>Complex functionality</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Existing problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Instructions not clear</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>New problem</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>User didn%27t attend training</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>%28na%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>3rd Party Caller</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ACH Debit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Account Booking Issue</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Account Name</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Accounts Payable-Internal Transfer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Address Change - Asset</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Address Change - Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Address%2FPhone%2FEmail</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Asset Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Asset Register Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Asset Returns Termination</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Assignment %26 Assumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Assignment%2FAssumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Autopay - Paper Form</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Autopay Setup</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Balance Dispute</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Banking Changes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Basic Account Information</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Basic DFS%2FDell Information</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Basic Payment Question</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Basic Product Questions</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Batch Cancellation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Billing Dispute</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Billing Disputes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Billing Invoice Issue</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking Error</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>CCAN Merge</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>CCAN Merge only</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>CPP Charges</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Callback Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash App Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Ops-Refund</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Ops-Refund - Low-Priority</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Ops-Refund - Priority</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Ops-Refund - Same Day</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash UI Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Charge Off Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Check Payments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Client Services-Pay Plan Proposal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Close Account</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Close%2FReopen Account</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Collections</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Company Search</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Changes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Info</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Reversal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit %28SO%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Check</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Decline Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit History Amendment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Incomplete Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Limit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Customer - PLI</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Line for Partner</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Note Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Report Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit Restructure</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit%2FCredit Bureau</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit%2FDebit Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Custodian%2FAuth Users</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer Complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer Name Change</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer%2FContact Info</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DBC</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DCN to DCN</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS Reports</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS Collections</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS Remediation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS to Terms</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DPA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Debt Validation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Dell Care</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Dell Sales</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Dell Tech</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Designee</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Debit Queries</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Pay Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Doc Generation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Document Requests</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Dropped Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Duplicate Account</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>EOL</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Early Term Quote</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Term Quote</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Term Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Executive Complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Extension Rental Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Failed Verification</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fees</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fees%2FInterest</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Finance Charges%2FInterest</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Flow Agreement%2FSnap Agreement</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Follow Up%2F Negotiation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fraud Claim</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Funding Payment Query</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28FA%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28G%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28MQ%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28PI%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General Payment Query</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Ghost Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Held Order</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Incident</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Cancellation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Claim</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Request %28DR%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Submission</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoices%2FArchives</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease Doc Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Credit Card</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to DBC</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Loan</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Terms</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Link%2FUnlink</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Loan to Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Log In</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MARCOM Audit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA Schedule</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MLA%2FSchedules</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MX Scheduling</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marketing Approvals</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Mass Update</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Misdirected Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Misdirected Calls</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Modification</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MyDFS%2Ecom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Natural Disaster</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>No Account Refund</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Non Standard Quote</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>On Hold</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>One off Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Online</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Online Payments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Originations</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other %28Legal%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other %28WSS%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>PNC for Services</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Paperless Statement%2FInvoices</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Payment History</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Payment Issue</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Payment Issues</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Phone Payments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Post-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Power of Attorney %2F Attorney Representation</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Authorization</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pre-Charge Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Preliminary PD Grade</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Privacy%2FOpt-Out</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Proforma Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Promo Disclosure</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Promotional Purchases</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Purchase Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Quality Review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Quote</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Recovery</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Refund %28General%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Refunds</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Request for remits</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Research</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Residual Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Restructure</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Return Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Reversed booking%2Ffunding</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>SARS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>SCRA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>SNAP</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops review</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Same Day %28emergency only%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Service</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Servicing</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Setup MLA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Software%2F Services deal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Statement%2FInvoice Delivery</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Statement%2FInvoice Summary</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Submit%2FResubmit Application</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Tax Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Taxes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Taxes%2FTax Exemption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Termination</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms and Conditions</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms to DFS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms to Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Transfer Account</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Transfer Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Transfer and Assumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Try Buy To Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>UCC Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Unapplied Suspense</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Unwind</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Upgrade Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>VAT Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Vendor Complaint</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WSS Login</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WSS Payments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WSS Profile</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WTM</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Waiver</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Walk-to-Manifest</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Welcome Letter</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Wire Payments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>With Holding Tax</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Write-Off</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Wrong Number</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+		<picklistValues>
+			<picklist>Type</picklist>
+			<values>
+				<fullName>3rd Party Caller</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Account Updates</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Address Change</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Banking Changes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Billing Invoice Issue</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Booking</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Call Back Customer</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Calls</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Apps</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Closed Loop</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Collections</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Complaints</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Information</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Modification - Post-funding</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Modification - Pre-funding</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Custom Invoicing</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer Name Change %2F CCAN Merge</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS APS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Debit Queries</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Direct Pay Invoice</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Document Requests</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>ESR</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fee Queries</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Financial Adjustments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Financing Connect</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fraud</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Fraud Claim</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Funding Payment Query</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Insurance Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Legal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Letters</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Maintenance Queries</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marcom</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Marketing</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Mass update</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Misdirected Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>None</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Other DFS%2FDell Departments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>PLI Credit</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Partner Issues</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pay Plan Proposal</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Payments</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Pricing Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>RTPA</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Records Management</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Refund Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Request for Remits</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Sales Ops</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Scheduling</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Special</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Statement%2FInvoice Inquiry</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Transfer Call</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Transfer and Assumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Unapplied Suspense</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WSS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>WTM</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+	<recordTypes>
+		<fullName>All_LATAM</fullName>
+		<active>true</active>
+		<businessProcess>EMEA Support Process</businessProcess>
+		<description>Used to display type, subtype, option on contract detail page for Mexico Users except Fraud/Admin.</description>
+		<label>All LATAM</label>
+		<picklistValues>
+			<picklist>SubType__c</picklist>
+			<values>
+				<fullName>Asset Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Assignment%2FAssumption</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Billing Invoice Issue</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash App Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash Ops-Refund - Priority</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Cash UI Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Changes</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Contract Info</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Customer%2FContact Info</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DCN to DCN</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>DFS to Terms</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>End of Term Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Extension Rental Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28FA%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28G%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28MQ%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>General %28PI%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Invoice Request %28DR%29</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease Doc Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Credit Card</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to DBC</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Loan</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lease to Terms</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Lift and Reapply Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Loan to Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>MX Scheduling</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Modification</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>On Hold</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Research</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Residual Request</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Restructure</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Reversed booking%2Ffunding</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Tax Adjustment</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms to DFS</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Terms to Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Try Buy To Lease</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Unwind</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Waiver</fullName>
+				<default>false</default>
+			</values>
+			<values>
+				<fullName>Write-Off</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
+	</recordTypes>
+</CustomObject>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Products__c</fullName>
+        <externalId>false</externalId>
+        <label>Products</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>DBC</fullName>
+                    <default>false</default>
+                    <label>DBC</label>
+                </value>
+                <value>
+                    <fullName>DPA</fullName>
+                    <default>false</default>
+                    <label>DPA</label>
+                </value>
+                <value>
+                    <fullName>MLA</fullName>
+                    <default>false</default>
+                    <label>MLA</label>
+                </value>
+                <value>
+                    <fullName>SNAP</fullName>
+                    <default>false</default>
+                    <label>SNAP</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Profiles__c</fullName>
+        <externalId>false</externalId>
+        <label>Profiles</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Business Administrator</fullName>
+                    <default>false</default>
+                    <label>Business Administrator</label>
+                </value>
+                <value>
+                    <fullName>Fraud Manager</fullName>
+                    <default>false</default>
+                    <label>Fraud Manager</label>
+                </value>
+                <value>
+                    <fullName>Fraud user</fullName>
+                    <default>false</default>
+                    <label>Fraud user</label>
+                </value>
+                <value>
+                    <fullName>Refunds Team</fullName>
+                    <default>false</default>
+                    <label>Refunds Team</label>
+                </value>
+                <value>
+                    <fullName>Standard Service User</fullName>
+                    <default>false</default>
+                    <label>Standard Service User</label>
+                </value>
+                <value>
+                    <fullName>Team Lead / Manager / Sr. Manager</fullName>
+                    <default>false</default>
+                    <label>Team Lead / Manager / Sr. Manager</label>
+                </value>
+                <value>
+                    <fullName>Team Lead / Manager / Sr. Manager without Encryption</fullName>
+                    <default>false</default>
+                    <label>Team Lead / Manager / Sr. Manager without Encryption</label>
+                </value>
+                <value>
+                    <fullName>US Operations User</fullName>
+                    <default>false</default>
+                    <label>US Operations User</label>
+                </value>
+                <value>
+                    <fullName>System Administrator</fullName>
+                    <default>false</default>
+                    <label>System Administrator</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <label>Account Maintenance</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Products__c</columns>
+        <columns>Profiles__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Maintenance</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Account Maintenances</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
